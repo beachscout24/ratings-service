@@ -1,29 +1,26 @@
 package com.bridgwater.models;
 
-import org.springframework.lang.NonNull;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Rating {
+public class Rating implements Serializable {
     public Rating() {
         super();
     }
 
-    public Rating(String movie, Integer rating) {
-        this.movie = movie;
-        this.rating = rating;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer id;
-    @NonNull
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String movie;
-    @NonNull
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer rating;
 
     public Integer getId() {
